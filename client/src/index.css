@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-premium-bg: #0f172a;
+  --color-premium-card: #1e293b;
+  --color-premium-accent: #6366f1;
+  --color-premium-hover: #818cf8;
+  --color-premium-text: #f8fafc;
+  --color-premium-muted: #94a3b8;
+}
+
+@layer base {
+  body {
+    @apply bg-premium-bg text-premium-text min-h-screen font-sans;
+  }
+}
+
+.glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glow-btn {
+  @apply relative overflow-hidden transition-all duration-300;
+}
+
+.glow-btn::before {
+  content: '';
+  @apply absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] transition-all duration-500;
+}
+
+.glow-btn:hover::before {
+  @apply left-full;
+}

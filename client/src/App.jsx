@@ -25,7 +25,8 @@ const App = () => {
       setOutput(response.data.boosted);
     } catch (err) {
       console.error(err);
-      setError('Something went wrong. Make sure the backend is running and the API key is set.');
+      const message = err.response?.data?.error || 'Something went wrong connecting to the server. Please try again.';
+      setError(message);
     } finally {
       setLoading(false);
     }

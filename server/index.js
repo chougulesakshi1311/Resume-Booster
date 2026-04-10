@@ -34,7 +34,7 @@ app.post('/api/boost', async (req, res) => {
         `;
 
         const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-2.0-flash',
             contents: prompt,
         });
 
@@ -43,7 +43,18 @@ app.post('/api/boost', async (req, res) => {
         res.json({ boosted: text });
     } catch (error) {
         console.error('Error boosting sentence:', error);
-        res.status(500).json({ error: 'Failed to boost sentence. Please check your API key and try again.' });
+        
+        let errorMessage = 'Failed to boost sentence. Please try again later.';
+        
+        if (error.status === 503) {
+            errorMessage = 'The AI model is currently experiencing high demand. Please try again in a few moments!';
+        } else if (error.status === 404) {
+            errorMessage = 'AI Model not found or API key invalid.';
+        } else if (error.message) {
+            errorMessage = error.message;
+        }
+
+        res.status(error.status || 500).json({ error: errorMessage });
     }
 });
 

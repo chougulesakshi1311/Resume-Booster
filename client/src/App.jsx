@@ -152,7 +152,7 @@ const App = () => {
         {/* Footer */}
         <div className="mt-12 text-center">
             <p className="text-premium-muted text-sm px-4 py-2 bg-white/5 inline-block rounded-full border border-white/5">
-                Powered by <span className="text-indigo-400 font-semibold">Gemini AI</span>
+                Powered by <span className="text-indigo-400 font-semibold">Rule Engine</span>
             </p>
         </div>
       </motion.div>

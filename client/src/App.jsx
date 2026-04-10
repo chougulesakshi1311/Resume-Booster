@@ -18,7 +18,7 @@ const App = () => {
     setOutput('');
     
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const apiUrl = 'https://resume-booster-backend.onrender.com';
       const response = await axios.post(`${apiUrl}/api/boost`, {
         sentence: input
       });
